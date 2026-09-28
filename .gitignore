@@ -1,0 +1,54 @@
+# Compiled Object files
+*.o
+*.obj
+*.ko
+*.mod.o
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries and archives
+*.lib
+*.a
+*.la
+*.lo
+
+# Executables
+*.exe
+*.out
+*.app
+*.bin
+
+# Temporary and backup files
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv/
+env/
+venv/
+
+# Node modules & logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

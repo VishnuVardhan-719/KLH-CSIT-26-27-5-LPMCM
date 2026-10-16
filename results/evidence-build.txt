@@ -1,0 +1,5 @@
+Captured: 2026-09-15_12:17_UTC  (Ubuntu 24.04 WSL2, GCC 13.3, kernel 6.18.33.2-microsoft-standard-WSL2)
+Command : make clean && make
+
+mkdir -p build
+gcc -Wall -Wextra -std=c11 -O2 -D_POSIX_C_SOURCE=200809L -Isrc -Itests -o build/lpmcs src/main.c src/utils.c src/system_info.c src/process_monitor.c src/process_control.c src/process_tree.c src/process_demo.c src/terminal_ui.c 

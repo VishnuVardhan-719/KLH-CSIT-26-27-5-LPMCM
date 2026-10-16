@@ -1,0 +1,1 @@
+Captured: 2026-09-15_12:17_UTC  (Ubuntu 24.04 WSL2, GCC 13.3, kernel 6.18.33.2-microsoft-standard-WSL2)

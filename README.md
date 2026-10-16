@@ -11,17 +11,18 @@
 ## Section / Team Details
 - **Section No.:** 12
 - **Team No.:** 05
-- **Project Title:** Linux Process Monitoring and Control System (LPMCM)
+- **Project Title:** Linux Process Monitoring and Control System (LPMCM - Terminal Edition)
+- **Repository:** `KLH-CSIT-26-27-5-LPMCM` (branch `main`)
 
 ### Team Members
-| Roll Number | Student Name | Signature |
+| Roll Number | Student Name | Area / Responsibility |
 |---|---|---|
-| 2520090166 | R. Vishnu Vardhan | |
-| 2520090070 | K. Amruthavalli | |
-| 2520090031 | N.Divya Sree | |
+| 2520090166 | R. Vishnu Vardhan | Architecture, /proc scanning & parsing, CPU interval engine, system_info |
+| 2520090070 | K. Amruthavalli | Process control module: signals, `kill()`, safety policy, error mapping |
+| 2520090031 | N. Divya Sree | Process tree graph, fork/exec/waitpid demo, test suite, documentation |
 
 ### Current Phase
-Phase 1 — Project Setup and Planning
+Phases 1–10 Complete: Build system, /proc discovery, process parsing, CPU/memory monitoring, live terminal UI, process control with safety policy, process tree, fork/exec/waitpid demo, 104 C test checks, AddressSanitizer/UBSan validation, and documentation.
 
 ---
 
@@ -30,135 +31,145 @@ Phase 1 — Project Setup and Planning
 ```text
 KLH-CSIT-26-27-5-LPMCM/
 │
-├── 2520090166_Practical/
-│   ├── Practical-01/
-│   │   ├── PRACTICAL_WEEK_1_OSSP.pdf
-│   │   └── WSL_INSTALLATION_Vishnu.pdf
-│   ├── Practical-02/
-│   │   └── WEEK-2_OSSP.pdf
-│   ├── Practical-03/
-│   │   └── PRACTICAL_WEEK3_OS_R_Vishnu_Vardhan_2520090166.pdf
-│   └── Practical-04/
-│       └── PRACTICAL_WEEK4_OS_R_Vishnu_Vardhan_2520090166.pdf
+├── 2520090031/                         # Coursework: N. Divya Sree
+│   ├── Practical/                      # Weekly practical assignments & lab tasks
+│   └── Skill/                          # Weekly skill exercises
 │
-├── 2520090166_Skill/
-│   ├── Skill-01/
-│   │   └── SKILL-WEEK1_OS_SIMPLE_COMMANDS_R_Vishnu_Vardhan_2520090166.pdf
-│   ├── Skill-02/
-│   │   └── SKILL_WEEK-2_OS_R_Vishnu_Vardhan_2520090166.pdf
-│   ├── Skill-03/
-│   │   └── SKILL_WEEK-3_OS_R_Vishnu_Vardhan_2520090166.pdf
-│   └── Skill-04/
-│       └── SKILL_WEEK-4_OS_R_Vishnu_Vardhan_2520090166.pdf
+├── 2520090070/                         # Coursework: K. Amruthavalli
+│   ├── Practical/                      # Weekly practical assignments & lab tasks
+│   └── Skill/                          # Weekly skill exercises
 │
-├── ForgeOS/
-│   ├── Shellforge/
-│   └── NanoKernel/
+├── 2520090166/                         # Coursework: R. Vishnu Vardhan
+│   ├── Practical/
+│   │   ├── Practical-01/               # Linux setup & WSL installation
+│   │   ├── Practical-02/               # Process management & creation
+│   │   ├── Practical-03/               # CPU scheduling & synchronization
+│   │   └── Practical-04/               # Memory management & syscalls
+│   └── Skill/
+│       ├── Skill-01/                   # Basic terminal navigation & permissions
+│       ├── Skill-02/                   # Shell scripting & text processing
+│       ├── Skill-03/                   # Inter-Process Communication (IPC)
+│       └── Skill-04/                   # POSIX signals & multithreading
 │
-├── .gitignore
-└── README.md
+├── ForgeOS/                            # Systems programming module
+│   ├── Shellforge/                     # UNIX shell implementation
+│   └── NanoKernel/                     # Minimal kernel primitives
+│
+├── src/                                # LPMCS Core Application (8 C modules)
+│   ├── main.c                          # CLI parsing, app lifecycle, dispatch
+│   ├── process_monitor.c/h             # /proc discovery & interval CPU engine
+│   ├── process_control.c/h             # kill() signals & safety gates
+│   ├── process_tree.c/h                # PID/PPID hierarchy graph
+│   ├── process_demo.c/h                # fork() -> exec() -> waitpid() demo
+│   ├── system_info.c/h                 # uname, uptime, meminfo, loadavg
+│   ├── terminal_ui.c/h                 # Raw-mode ANSI interactive UI
+│   └── utils.c/h                       # String formatting & safe readers
+│
+├── docs/                               # System architecture & API specifications
+│   ├── architecture.md
+│   ├── proc-filesystem.md
+│   ├── process-control.md
+│   ├── system_calls.md
+│   └── testing.md
+│
+├── tests/                              # Automated test suite (104 C checks + 2 CLI checks)
+├── results/                            # Test plan & verification evidence logs
+├── reports/                            # Phase reports & presentation guide
+├── data/                               # Reference datasets
+├── Makefile                            # Automated build & test orchestration
+├── .gitignore                          # Git tracking exclusions
+└── README.md                           # Master documentation
 ```
 
 ---
 
-## Coursework Overview
+## Coursework Overview (`2520090166/`)
 
-### 1. Practical Work (`2520090166_Practical/`)
-- **Practical-01:**
-  - `PRACTICAL_WEEK_1_OSSP.pdf`: Introduction to Linux environment, foundational POSIX tools, and system setup.
-  - `WSL_INSTALLATION_Vishnu.pdf`: Windows Subsystem for Linux (WSL/Ubuntu) installation and configuration guide.
-- **Practical-02:**
-  - `WEEK-2_OSSP.pdf`: Process management fundamentals, process identifiers, and process creation (`fork()` / `exec()`).
-- **Practical-03:**
-  - `PRACTICAL_WEEK3_OS_R_Vishnu_Vardhan_2520090166.pdf`: CPU scheduling algorithms, process synchronization, and concurrency mechanisms.
-- **Practical-04:**
-  - `PRACTICAL_WEEK4_OS_R_Vishnu_Vardhan_2520090166.pdf`: Memory management concepts, page replacement, and system call implementations.
+### 1. Practical Work (`2520090166/Practical/`)
+- **Practical-01:** `PRACTICAL_WEEK_1_OSSP.pdf`, `WSL_INSTALLATION_Vishnu.pdf` (Linux environment, POSIX tools, WSL Ubuntu configuration).
+- **Practical-02:** `WEEK-2_OSSP.pdf` (Process management fundamentals, PIDs, `fork()` / `exec()`).
+- **Practical-03:** `PRACTICAL_WEEK3_OS_R_Vishnu_Vardhan_2520090166.pdf` (CPU scheduling algorithms, concurrency, process sync).
+- **Practical-04:** `PRACTICAL_WEEK4_OS_R_Vishnu_Vardhan_2520090166.pdf` (Memory management, page replacement, system calls).
 
-### 2. Skill Work (`2520090166_Skill/`)
-- **Skill-01:**
-  - `SKILL-WEEK1_OS_SIMPLE_COMMANDS_R_Vishnu_Vardhan_2520090166.pdf`: Practical mastery of basic Linux terminal commands, filesystem navigation, and permissions.
-- **Skill-02:**
-  - `SKILL_WEEK-2_OS_R_Vishnu_Vardhan_2520090166.pdf`: Shell scripting, filters, pipe redirection, and text processing utilities.
-- **Skill-03:**
-  - `SKILL_WEEK-3_OS_R_Vishnu_Vardhan_2520090166.pdf`: Inter-Process Communication (IPC) techniques, pipes, and shared memory structures.
-- **Skill-04:**
-  - `SKILL_WEEK-4_OS_R_Vishnu_Vardhan_2520090166.pdf`: Advanced POSIX signaling, multithreading, and system programming exercises.
+### 2. Skill Work (`2520090166/Skill/`)
+- **Skill-01:** `SKILL-WEEK1_OS_SIMPLE_COMMANDS_R_Vishnu_Vardhan_2520090166.pdf` (Terminal commands, filesystem navigation).
+- **Skill-02:** `SKILL_WEEK-2_OS_R_Vishnu_Vardhan_2520090166.pdf` (Shell scripting, filters, pipes, redirection).
+- **Skill-03:** `SKILL_WEEK-3_OS_R_Vishnu_Vardhan_2520090166.pdf` (IPC mechanisms, pipes, shared memory).
+- **Skill-04:** `SKILL_WEEK-4_OS_R_Vishnu_Vardhan_2520090166.pdf` (POSIX signaling, multithreading, systems programming).
 
 ---
 
-## ForgeOS Project
-
-`ForgeOS` represents the core systems-programming module containing:
-- **`Shellforge/`**: A custom UNIX shell implementation built in C, providing command parsing, execution pipelines, background jobs, and built-in commands.
-- **`NanoKernel/`**: An experimental minimal kernel component demonstrating core primitives of operating system design, task execution, and memory addressing.
-
----
-
-## Course Project: Linux Process Monitoring and Control System (LPMCM)
+## Course Project: Linux Process Monitoring and Control System (LPMCS)
 
 ### 1. Abstract
-The Linux Process Monitoring and Control System is designed to provide a unified environment for observing and managing active Linux processes. Linux offers process information and control through multiple command-line utilities and system interfaces, which can be difficult to study together. This project brings these concepts into a single Linux-based system that displays process IDs, parent-child relationships, process states, and resource usage, while also supporting controlled process operations. The implementation uses Linux/POSIX concepts including the `/proc` filesystem, process IDs, signals, and `kill()` for process monitoring and control. A separate demonstration component uses `fork()`, `exec()`, and `wait()` to illustrate process creation and synchronization concepts. Process information will be collected and presented in a structured form, and signals will be used to observe changes in selected processes. The expected outcome is a working process monitoring and control system that demonstrates practical understanding of process monitoring, signaling, resource tracking, and Linux system programming.
+The Linux Process Monitoring and Control System is a terminal application written in C11 that observes and manages active Linux processes. The application continuously discovers processes by scanning the `/proc` filesystem, parses kernel data structures directly, and presents a live, keyboard-driven dashboard with per-process CPU, memory, state, user, and hierarchy information. Users select processes with arrow keys and control them using POSIX signals (`SIGSTOP`, `SIGCONT`, `SIGTERM`, `SIGKILL`) through a safety layer that protects system-critical processes. A separate educational module demonstrates `fork()`, `exec()`, and `waitpid()` working together. Every value displayed is read live from the Linux kernel; nothing is simulated.
 
 ### 2. Problem Statement
-Linux provides process monitoring and control mechanisms through different commands, APIs, and system interfaces. Using these mechanisms separately makes it difficult to obtain a unified view of process states, PIDs, parent-child relationships, resource usage, and process-control operations. The project addresses this problem by developing a Linux-based system that integrates process monitoring and basic process control while demonstrating core Operating Systems and POSIX system-programming concepts.
+Linux exposes process information through many separate tools (`ps`, `top`, `kill`, `pstree`), which makes it difficult to study Operating Systems process concepts as a coherent whole. None of these tools are designed to demonstrate how the underlying mechanisms interact. This project replaces those separate interfaces with a single terminal system that implements monitoring and control itself on top of `/proc` and POSIX system calls, making each OS concept (PIDs, states, parent-child relations, scheduling counters, signals, process creation) visible and interactive.
 
-### 3. Objectives
-1. Monitor and display information about active Linux processes.
-2. Observe process states, process IDs, parent-child relationships, and resource usage.
-3. Provide controlled process-management operations using POSIX/Linux signals.
-4. Demonstrate Linux/POSIX process creation, execution, and synchronization concepts in a separate demo component.
+### 3. Architecture
+```text
+main.c ── terminal_ui.c ──┬── process_monitor.c ── /proc scan + parse
+                          ├── process_control.c ── kill() + safety policy
+                          ├── process_tree.c ────── PID/PPID hierarchy graph
+                          ├── process_demo.c ────── fork/exec/waitpid demo
+                          └── system_info.c ─────── uname/meminfo/stat
+                                     utils.c (shared helpers)
+```
 
-### 4. Proposed Methodology
-The core system will be implemented in Linux using C and POSIX/Linux interfaces. It will collect process information from the `/proc` filesystem and standard system interfaces, organize the information, and display process IDs, states, relationships, and resource usage. Process-control operations will be performed by sending appropriate signals using `kill()`. A separate demonstration component will use `fork()`, `exec()`, and `wait()` to demonstrate process creation, execution, and synchronization. The system will then observe and report resulting process-state changes in a structured manner.
-
-### 5. Operating Systems Concepts / Linux APIs Used
-| OS Concept / Linux API / System Call | Purpose in the Project |
+### 4. Linux / POSIX Technologies
+| Concept / API | Used For |
 |---|---|
-| `/proc` filesystem | Read process information such as status and resource details. |
-| PID / PPID / Process states | Identify processes, parent-child relationships, and execution states. |
-| POSIX/Linux signals & `kill()` | Send controlled signals to selected processes. |
-| `fork()`, `exec()`, `wait()` | Demonstrate process creation, execution, termination, and synchronization in a separate demo component. |
+| `/proc` filesystem (`stat`, `status`, `cmdline`, `exe`, `meminfo`, `stat`, `uptime`) | All process discovery, resource consumption, and system metrics |
+| `kill()`, `SIGSTOP`, `SIGCONT`, `SIGTERM`, `SIGKILL` | Controlled process lifecycle management |
+| `fork()`, `execl()`, `waitpid()` | Process creation and synchronization demonstration |
+| `readdir()`, `readlink()`, `getpwuid_r()` | Dynamic `/proc` enumeration and user enrichment |
+| `uname()`, `sysconf()` | Hardware architecture and page size resolution |
+| `poll()` | Non-blocking input driving the 1-second refresh cadence |
+| `tcgetattr()` / `tcsetattr()`, ANSI escapes | Flicker-free raw-mode terminal user interface |
 
-### 6. Individual Contribution
-| Roll Number | Student Name | Individual Responsibility |
-|---|---|---|
-| 2520090166 | R. Vishnu Vardhan | Architecture, process parsing, and signal control engine |
-| 2520090070 | K. Amruthavalli | `/proc` interface reader and process state representation |
-| 2520090031 | N.Divya Sree | Process tree relationship mapper and demonstration module |
-
-### 7. Tools / Platforms / Software Used
-| Tool / Platform / Software | Purpose |
-|---|---|
-| Linux / Ubuntu / WSL2 | Development and execution platform; provides `/proc` and Linux process interfaces. |
-| C | System-programming language for implementing process monitoring and control. |
-| GCC | Compile and build the C source code. |
-| Git / GitHub | Version control, collaboration, and project repository management. |
-
-### 8. Expected Outcome
-A working Linux-based Process Monitoring and Control System that displays active-process information, process states, resource usage, and parent-child relationships, and performs basic controlled operations using signals. The project will demonstrate practical understanding of Linux processes, system calls, signals, synchronization, process management, and Operating Systems concepts.
+### 5. Safety Policy & Integrity
+- **PID 1 (init/systemd) Protection:** The monitor refuses to signal PID 1 to prevent system lockups.
+- **Self & Ancestor Protection:** Traverses `/proc/<PID>/stat` PPID chain to prevent signaling the monitor or its parent shell.
+- **Race-Free Signal Verification:** Checks process start time (`starttime`) before signal delivery to prevent signaling recycled PIDs (`ctrl_send_verified()`).
+- **Confirmation Requirement:** `SIGKILL` requires explicit `[y/N]` confirmation before execution.
 
 ---
 
-## Setup & Execution Instructions
+## Build & Execution Instructions
 
 ### Prerequisites
-- Linux Environment (Ubuntu 20.04+ or WSL2 on Windows)
-- GNU Compiler Collection (`gcc`) and `make`:
-  ```bash
-  sudo apt update && sudo apt install -y build-essential git
-  ```
+Ubuntu 22.04+ / Debian or WSL2 on Windows, GCC 13+, GNU Make.
+```bash
+sudo apt update && sudo apt install -y build-essential
+```
 
-### Building and Running C System Components
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/VishnuVardhan-719/KLH-CSIT-26-27-5-LPMCM.git
-   cd KLH-CSIT-26-27-5-LPMCM
-   ```
-2. Compile C source files (with standard POSIX compliance and warnings enabled):
-   ```bash
-   gcc -Wall -Wextra -pedantic -std=c11 <source_file>.c -o <output_binary>
-   ```
-3. Execute the binary:
-   ```bash
-   ./<output_binary>
-   ```
+### Build Commands
+```bash
+make            # Compile build/lpmcs (-Wall -Wextra -std=c11, zero warnings)
+make test       # Run 104 C checks + 2 end-to-end integration checks
+make sanitize   # Run test suite under AddressSanitizer + UndefinedBehaviorSanitizer
+make run        # Build and start the interactive terminal monitor
+make clean      # Clean build artifacts
+```
+
+### Execution Modes
+```bash
+./build/lpmcs          # Interactive live dashboard (TUI)
+./build/lpmcs --once   # One-shot table snapshot and exit
+./build/lpmcs --tree   # Hierarchical PID/PPID tree display
+./build/lpmcs --demo   # Fork / exec / waitpid execution lifecycle demo
+./build/lpmcs --help   # Command-line help and usage
+```
+
+### Interactive Keyboard Controls
+- `[↑ / ↓]` Navigate & select process
+- `[Enter]` Process details inspection view
+- `[C]` Process Control menu (Pause, Resume, Stop, Force Kill)
+- `[T]` Process hierarchy tree view
+- `[D]` Educational `fork()` / `exec()` / `waitpid()` demonstration
+- `[S]` Sort mode toggle (PID, CPU%, MEM%, Name)
+- `[F]` State filter (All, Running, Sleeping, Stopped, Zombie)
+- `[/]` Search by process name
+- `[R]` Manual instant refresh
+- `[Q]` Clean exit with terminal mode restoration

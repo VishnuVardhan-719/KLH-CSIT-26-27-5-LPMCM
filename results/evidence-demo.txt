@@ -1,0 +1,28 @@
+=================================================================
+              PROCESS CREATION DEMONSTRATION
+=================================================================
+
+Parent PID : 3327
+
+Calling fork()...
+
+Child PID  : 3328 (created by fork)
+Child PPID : 3327 (the parent above)
+
+Child calling exec() to replace itself with /bin/echo...
+
+Hello from the child process (via exec).
+fork() returned to the parent with the child's PID: 3328
+
+The child's exec'd output appears above ^
+
+Parent calling waitpid() to synchronise with the child...
+
+waitpid() returned: 3328 (child PID)
+Child exited normally.
+Exit status: 0
+
+Concept chain demonstrated:
+  fork() -> child process -> execl() -> program execution
+         -> waitpid() -> parent synchronisation
+

@@ -1,0 +1,239 @@
+gcc -Wall -Wextra -std=c11 -O2 -D_POSIX_C_SOURCE=200809L -Isrc -Itests -o build/run_tests tests/run_tests.c src/utils.c src/system_info.c src/process_monitor.c src/process_control.c src/process_tree.c 
+./build/run_tests
+LPMCS test suite
+================
+
+# utils
+  ok 1 - sstrcpy basic
+  ok 2 - sstrcpy truncates safely
+  ok 3 - trim strips blanks
+  ok 4 - ci_contains match
+  ok 5 - ci_contains no-match
+  ok 6 - uptime HH:MM:SS format
+  ok 7 - utf8_width counts code points
+
+# system_info
+  ok 8 - static info read
+  ok 9 - hostname non-empty
+  ok 10 - kernel release non-empty
+  ok 11 - cpu count > 0
+  ok 12 - MemTotal > 0
+  ok 13 - uptime > 0
+  ok 14 - load average >= 0
+  ok 15 - MemAvailable > 0
+  ok 16 - parse_meminfo_kb exact
+  ok 17 - prefix keys not confused (MemTotal vs HugePages_Total)
+  ok 18 - missing key -> -1
+
+# parse_stat_line
+  ok 19 - simple comm parses
+  ok 20 - fields correct
+  ok 21 - comm extracted
+  ok 22 - comm with spaces parses
+  ok 23 - spaced comm correct
+  ok 24 - spaced-comm fields correct
+  ok 25 - threads/rss correct
+  ok 26 - malformed line rejected
+  ok 27 - empty line rejected
+  ok 28 - truncated line rejected
+
+# parse_status_field
+  ok 29 - Name parsed
+  ok 30 - first Uid field parsed
+  ok 31 - VmRSS parsed
+  ok 32 - missing key rejected
+  ok 33 - NULL buffer rejected
+
+# cpu_percent_of
+  ok 34 - 20 process ticks / 100 system ticks = 20%%
+  ok 35 - 50/1000 over 1000 = 5%%
+  ok 36 - no system delta -> 0 (guard)
+  ok 37 - negative process delta -> 0 (process replaced)
+  ok 38 - all zeros -> 0
+
+# state_char_name
+  ok 39 - R -> RUNNING
+  ok 40 - S -> SLEEPING
+  ok 41 - D -> DISK SLEEP
+  ok 42 - T -> STOPPED
+  ok 43 - Z -> ZOMBIE
+  ok 44 - I -> IDLE
+  ok 45 - unknown state -> UNKNOWN
+
+# search/filter
+  ok 46 - name substring matches
+  ok 47 - case-insensitive match
+  ok 48 - PID search matches
+  ok 49 - user search matches
+  ok 50 - no match on absent text
+  ok 51 - empty query matches all
+  ok 52 - state filter S matches
+  ok 53 - state filter R rejects S
+  ok 54 - state filter A matches all
+
+# monitor discovery (/proc)
+  ok 55 - monitor_create succeeds
+  ok 56 - monitor_refresh reads /proc
+  ok 57 - found a plausible number of processes
+  ok 58 - process_count matches table
+  ok 59 - PID 1 discovered automatically
+  ok 60 - this test process discovered automatically
+  ok 61 - second refresh works (reused buffer)
+
+# get_process_info
+  ok 62 - PID 1 readable
+  ok 63 - PID field correct
+  ok 64 - state name filled
+  ok 65 - negative PID rejected
+  ok 66 - nonexistent PID rejected (ENOENT path)
+
+# disappearing process
+  ok 67 - fork/exec child created
+  ok 68 - exec'd /bin/true exited 0 (exec works)
+  ok 69 - exited PID no longer readable (graceful ENOENT)
+
+# control safety gates
+  ok 70 - PID 1 refused
+  ok 71 - PID 0 refused
+  ok 72 - negative PID refused
+  ok 73 - monitor itself refused
+  ok 74 - parent (shell) refused
+  ok 75 - PID 1 SIGKILL refused
+  ok 76 - rejection explains itself
+
+# control round-trips (disposable children)
+  ok 77 - parked child created
+  ok 78 - SIGSTOP accepted
+  ok 79 - child observed in T state
+  ok 80 - SIGCONT accepted
+  ok 81 - SIGTERM accepted
+  ok 82 - child terminated by SIGTERM
+  ok 83 - signaling dead PID fails gracefully (ESRCH)
+  ok 84 - second parked child created
+  ok 85 - SIGKILL accepted
+  ok 86 - child killed by SIGKILL
+
+# process tree
+PARKED 3349
+LPMCS test suite
+================
+
+# utils
+  ok 1 - sstrcpy basic
+  ok 2 - sstrcpy truncates safely
+  ok 3 - trim strips blanks
+  ok 4 - ci_contains match
+  ok 5 - ci_contains no-match
+  ok 6 - uptime HH:MM:SS format
+  ok 7 - utf8_width counts code points
+
+# system_info
+  ok 8 - static info read
+  ok 9 - hostname non-empty
+  ok 10 - kernel release non-empty
+  ok 11 - cpu count > 0
+  ok 12 - MemTotal > 0
+  ok 13 - uptime > 0
+  ok 14 - load average >= 0
+  ok 15 - MemAvailable > 0
+  ok 16 - parse_meminfo_kb exact
+  ok 17 - prefix keys not confused (MemTotal vs HugePages_Total)
+  ok 18 - missing key -> -1
+
+# parse_stat_line
+  ok 19 - simple comm parses
+  ok 20 - fields correct
+  ok 21 - comm extracted
+  ok 22 - comm with spaces parses
+  ok 23 - spaced comm correct
+  ok 24 - spaced-comm fields correct
+  ok 25 - threads/rss correct
+  ok 26 - malformed line rejected
+  ok 27 - empty line rejected
+  ok 28 - truncated line rejected
+
+# parse_status_field
+  ok 29 - Name parsed
+  ok 30 - first Uid field parsed
+  ok 31 - VmRSS parsed
+  ok 32 - missing key rejected
+  ok 33 - NULL buffer rejected
+
+# cpu_percent_of
+  ok 34 - 20 process ticks / 100 system ticks = 20%%
+  ok 35 - 50/1000 over 1000 = 5%%
+  ok 36 - no system delta -> 0 (guard)
+  ok 37 - negative process delta -> 0 (process replaced)
+  ok 38 - all zeros -> 0
+
+# state_char_name
+  ok 39 - R -> RUNNING
+  ok 40 - S -> SLEEPING
+  ok 41 - D -> DISK SLEEP
+  ok 42 - T -> STOPPED
+  ok 43 - Z -> ZOMBIE
+  ok 44 - I -> IDLE
+  ok 45 - unknown state -> UNKNOWN
+
+# search/filter
+  ok 46 - name substring matches
+  ok 47 - case-insensitive match
+  ok 48 - PID search matches
+  ok 49 - user search matches
+  ok 50 - no match on absent text
+  ok 51 - empty query matches all
+  ok 52 - state filter S matches
+  ok 53 - state filter R rejects S
+  ok 54 - state filter A matches all
+
+# monitor discovery (/proc)
+  ok 55 - monitor_create succeeds
+  ok 56 - monitor_refresh reads /proc
+  ok 57 - found a plausible number of processes
+  ok 58 - process_count matches table
+  ok 59 - PID 1 discovered automatically
+  ok 60 - this test process discovered automatically
+  ok 61 - second refresh works (reused buffer)
+
+# get_process_info
+  ok 62 - PID 1 readable
+  ok 63 - PID field correct
+  ok 64 - state name filled
+  ok 65 - negative PID rejected
+  ok 66 - nonexistent PID rejected (ENOENT path)
+
+# disappearing process
+  ok 67 - fork/exec child created
+  ok 68 - exec'd /bin/true exited 0 (exec works)
+  ok 69 - exited PID no longer readable (graceful ENOENT)
+
+# control safety gates
+  ok 70 - PID 1 refused
+  ok 71 - PID 0 refused
+  ok 72 - negative PID refused
+  ok 73 - monitor itself refused
+  ok 74 - parent (shell) refused
+  ok 75 - PID 1 SIGKILL refused
+  ok 76 - rejection explains itself
+
+# control round-trips (disposable children)
+  ok 77 - parked child created
+  ok 78 - SIGSTOP accepted
+  ok 79 - child observed in T state
+  ok 80 - SIGCONT accepted
+  ok 81 - SIGTERM accepted
+  ok 82 - child terminated by SIGTERM
+  ok 83 - signaling dead PID fails gracefully (ESRCH)
+  ok 84 - second parked child created
+  ok 85 - SIGKILL accepted
+  ok 86 - child killed by SIGKILL
+
+# process tree
+  ok 87 - tree child created
+  ok 88 - tree_build succeeds
+  ok 89 - tree has lines
+  ok 90 - forked child appears in tree
+  ok 91 - tree rooted deterministically
+
+91 checks, 0 failures
+ALL TESTS PASSED

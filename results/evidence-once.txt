@@ -1,0 +1,38 @@
+===============================================================
+        LINUX PROCESS MONITORING & CONTROL SYSTEM
+===============================================================
+ Hostname : Vishnu   Kernel : 6.18.33.2-microsoft-standard-WSL2
+ Uptime   : 01:35:30   CPUs   : 4
+ CPU      : 0.0%   Memory : 15.2% (438/2875 MB)
+ Processes: 26  (R:1 S:25 D:0 Z:0)
+---------------------------------------------------------------
+    PID  PROCESS              USER         CPU%   MEM%  STATE           PPID
+---------------------------------------------------------------
+      1  systemd              root          0.0    0.4  SLEEPING           0
+      2  init-systemd(Ub      root          0.0    0.1  SLEEPING           1
+      6  init                 root          0.0    0.1  SLEEPING           2
+     55  systemd-journal      root          0.0    0.5  SLEEPING           1
+    112  systemd-udevd        root          0.0    0.2  SLEEPING           1
+    139  systemd-resolve      systemd-re    0.0    0.4  SLEEPING           1
+    144  systemd-timesyn      systemd-ti    0.0    0.3  SLEEPING           1
+    171  cron                 root          0.0    0.1  SLEEPING           1
+    172  dbus-daemon          messagebus    0.0    0.2  SLEEPING           1
+    179  systemd-logind       root          0.0    0.3  SLEEPING           1
+    197  rsyslogd             syslog        0.0    0.2  SLEEPING           1
+    200  agetty               root          0.0    0.1  SLEEPING           1
+    206  unattended-upgr      root          0.0    0.8  SLEEPING           1
+    301  Relay(302)           root          0.0    0.0  SLEEPING           1
+    303  login                root          0.0    0.1  SLEEPING           2
+    335  systemd              root          0.0    0.4  SLEEPING           1
+    336  (sd-pam)             root          0.0    0.1  SLEEPING         335
+    359  bash                 root          0.0    0.2  SLEEPING         303
+    389  run_tests            root          0.0    0.0  SLEEPING         301
+    407  Relay(411)           root          0.0    0.0  SLEEPING           1
+    438  run_tests            root          0.0    0.0  SLEEPING         407
+   1429  polkitd              polkitd       0.0    0.2  SLEEPING           1
+   3295  SessionLeader        root          0.0    0.0  SLEEPING           2
+   3297  Relay(3299)          root          0.0    0.0  SLEEPING        3295
+   3299  bash                 root          0.0    0.1  SLEEPING        3297
+   3325  lpmcs                root          0.0    0.1  RUNNING         3299
+---------------------------------------------------------------
+26 processes listed. All values read live from /proc.

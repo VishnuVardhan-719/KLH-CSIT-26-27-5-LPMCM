@@ -83,21 +83,6 @@ KLH-CSIT-26-27-5-LPMCM/
 
 ---
 
-## Coursework Overview (`2520090166/`)
-
-### 1. Practical Work (`2520090166/Practical/`)
-- **Practical-01:** `PRACTICAL_WEEK_1_OSSP.pdf`, `WSL_INSTALLATION_Vishnu.pdf` (Linux environment, POSIX tools, WSL Ubuntu configuration).
-- **Practical-02:** `WEEK-2_OSSP.pdf` (Process management fundamentals, PIDs, `fork()` / `exec()`).
-- **Practical-03:** `PRACTICAL_WEEK3_OS_R_Vishnu_Vardhan_2520090166.pdf` (CPU scheduling algorithms, concurrency, process sync).
-- **Practical-04:** `PRACTICAL_WEEK4_OS_R_Vishnu_Vardhan_2520090166.pdf` (Memory management, page replacement, system calls).
-
-### 2. Skill Work (`2520090166/Skill/`)
-- **Skill-01:** `SKILL-WEEK1_OS_SIMPLE_COMMANDS_R_Vishnu_Vardhan_2520090166.pdf` (Terminal commands, filesystem navigation).
-- **Skill-02:** `SKILL_WEEK-2_OS_R_Vishnu_Vardhan_2520090166.pdf` (Shell scripting, filters, pipes, redirection).
-- **Skill-03:** `SKILL_WEEK-3_OS_R_Vishnu_Vardhan_2520090166.pdf` (IPC mechanisms, pipes, shared memory).
-- **Skill-04:** `SKILL_WEEK-4_OS_R_Vishnu_Vardhan_2520090166.pdf` (POSIX signaling, multithreading, systems programming).
-
----
 
 ## Course Project: Linux Process Monitoring and Control System (LPMCS)
 
